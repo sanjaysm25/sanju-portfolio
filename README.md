@@ -2,6 +2,8 @@
 
 A modern, responsive portfolio website showcasing my skills, experience, and projects as an AI & Machine Learning Engineer.
 
+🌐 **Live Site**: [https://sanjaysm25.github.io/sanju-portfolio/](https://sanjaysm25.github.io/sanju-portfolio/)
+
 ## 🚀 Features
 
 - **Modern UI/UX**: Beautiful, sleek design with glassmorphism effects and smooth animations
