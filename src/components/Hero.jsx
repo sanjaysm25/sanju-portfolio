@@ -19,8 +19,8 @@ const Hero = () => {
         className="absolute top-8 left-8 z-40"
       >
         <img 
-          src="/logo.png" 
-          alt="Logo" 
+          src={`${import.meta.env.BASE_URL}logo.png`}
+          alt="Sanjay S M Logo" 
           className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 object-contain"
         />
       </motion.div>
