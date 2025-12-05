@@ -33,7 +33,9 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_PYTHON_PORTFOLIO_URL: ${{ secrets.VITE_PYTHON_PORTFOLIO_URL || 'http://localhost:5000' }}
+          # Set this secret in GitHub: Settings > Secrets and variables > Actions
+          # Use your deployed Python portfolio URL (e.g., https://your-python-portfolio.herokuapp.com)
+          VITE_PYTHON_PORTFOLIO_URL: ${{ secrets.VITE_PYTHON_PORTFOLIO_URL || 'https://your-python-portfolio.herokuapp.com' }}
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

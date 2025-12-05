@@ -222,6 +222,7 @@ gunicorn
 - Edit `python-portfolio/app.py`
 - Update `portfolio_data` dictionary
 - Modify templates in `python-portfolio/templates/`
+- Set `JS_PORTFOLIO_URL` environment variable for production deployment
 
 ### Color Scheme
 
@@ -252,10 +253,23 @@ python app.py
 
 ### Environment Variables
 
+**JavaScript Portfolio:**
 Create `.env` file in root directory:
 ```env
 VITE_PYTHON_PORTFOLIO_URL=http://localhost:5000
 ```
+
+**Python Portfolio:**
+For production deployment, set the JavaScript portfolio URL:
+```bash
+# Set environment variable
+export JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio
+
+# Or for Heroku/Railway/Render, set in their dashboard
+# JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio
+```
+
+**Note:** If `JS_PORTFOLIO_URL` is not set, it defaults to `http://localhost:5173` for local development.
 
 ## 📱 Contact
 

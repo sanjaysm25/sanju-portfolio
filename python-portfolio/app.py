@@ -1,6 +1,11 @@
 from flask import Flask, render_template
+import os
 
 app = Flask(__name__)
+
+# Configuration for portfolio switcher URLs
+# Set via environment variable JS_PORTFOLIO_URL or default to localhost for development
+JS_PORTFOLIO_URL = os.environ.get('JS_PORTFOLIO_URL', 'http://localhost:5173')
 
 # Portfolio data
 portfolio_data = {
@@ -118,35 +123,36 @@ portfolio_data = {
 
 @app.route('/')
 def index():
-    return render_template('index.html', data=portfolio_data)
+    return render_template('index.html', data=portfolio_data, js_portfolio_url=JS_PORTFOLIO_URL)
 
 @app.route('/about')
 def about():
-    return render_template('about.html', data=portfolio_data)
+    return render_template('about.html', data=portfolio_data, js_portfolio_url=JS_PORTFOLIO_URL)
 
 @app.route('/skills')
 def skills():
-    return render_template('skills.html', data=portfolio_data)
+    return render_template('skills.html', data=portfolio_data, js_portfolio_url=JS_PORTFOLIO_URL)
 
 @app.route('/education')
 def education():
-    return render_template('education.html', data=portfolio_data)
+    return render_template('education.html', data=portfolio_data, js_portfolio_url=JS_PORTFOLIO_URL)
 
 @app.route('/projects')
 def projects():
-    return render_template('projects.html', data=portfolio_data)
+    return render_template('projects.html', data=portfolio_data, js_portfolio_url=JS_PORTFOLIO_URL)
 
 @app.route('/experience')
 def experience():
-    return render_template('experience.html', data=portfolio_data)
+    return render_template('experience.html', data=portfolio_data, js_portfolio_url=JS_PORTFOLIO_URL)
 
 @app.route('/contact')
 def contact():
-    return render_template('contact.html', data=portfolio_data)
+    return render_template('contact.html', data=portfolio_data, js_portfolio_url=JS_PORTFOLIO_URL)
 
 if __name__ == '__main__':
-    import os
     debug_mode = os.environ.get('FLASK_ENV') == 'development'
     port = int(os.environ.get('PORT', 5000))
+    print(f"Starting Flask server on http://0.0.0.0:{port}")
+    print(f"JavaScript Portfolio URL: {JS_PORTFOLIO_URL}")
     app.run(debug=debug_mode, host='0.0.0.0', port=port)
 

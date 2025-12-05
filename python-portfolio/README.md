@@ -92,6 +92,20 @@ Edit `static/style.css` to customize:
 
 ## 🌐 Deployment
 
+### Environment Variables
+
+Before deploying, set the JavaScript portfolio URL:
+
+```bash
+# For production, set the JavaScript portfolio URL
+export JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio
+
+# Or for Heroku/Railway/Render, set in their dashboard:
+# JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio
+```
+
+**Note:** If not set, it defaults to `http://localhost:5173` for local development.
+
 ### Heroku
 
 1. **Create `Procfile`:**
@@ -104,7 +118,12 @@ web: gunicorn app:app
 gunicorn
 ```
 
-3. **Deploy:**
+3. **Set environment variable:**
+```bash
+heroku config:set JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio
+```
+
+4. **Deploy:**
 ```bash
 git push heroku main
 ```

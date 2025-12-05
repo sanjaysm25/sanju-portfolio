@@ -97,10 +97,13 @@ heroku create your-app-name
 git push heroku main
 ```
 
-5. **Set environment variables (if needed):**
+5. **Set environment variables:**
 ```bash
 heroku config:set FLASK_ENV=production
+heroku config:set JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio
 ```
+
+**Important:** Set `JS_PORTFOLIO_URL` to your deployed JavaScript portfolio URL (e.g., GitHub Pages URL).
 
 ### Railway
 
@@ -115,7 +118,10 @@ pip install -r requirements.txt
 gunicorn app:app
 ```
 
-4. **Deploy automatically on push**
+4. **Set environment variable:**
+   - In Railway dashboard, add: `JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio`
+
+5. **Deploy automatically on push**
 
 ### Render
 
@@ -125,6 +131,7 @@ gunicorn app:app
    - Build Command: `pip install -r requirements.txt`
    - Start Command: `gunicorn app:app`
    - Environment: Python 3
+   - Environment Variables: Add `JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio`
 
 4. **Deploy**
 
@@ -148,9 +155,19 @@ from app import app as application
 
 After deploying both portfolios:
 
-1. **Update JavaScript portfolio `.env`:**
+1. **Update JavaScript portfolio `.env.production`:**
 ```env
 VITE_PYTHON_PORTFOLIO_URL=https://your-python-portfolio.herokuapp.com
+```
+
+2. **Update Python portfolio environment variable:**
+```bash
+# Set JS_PORTFOLIO_URL to your JavaScript portfolio URL
+# For Heroku:
+heroku config:set JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio
+
+# For Railway/Render: Set in their dashboard
+# JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio
 ```
 
 2. **Rebuild and redeploy JavaScript portfolio**
@@ -225,7 +242,20 @@ VITE_PYTHON_PORTFOLIO_URL=https://your-python-portfolio-url.com
 
 ### Python Portfolio
 
-For production, you may want to add:
+Set the JavaScript portfolio URL for the portfolio switcher:
+
+**Heroku:**
+```bash
+heroku config:set JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio
+```
+
+**Railway/Render:**
+Set in dashboard: `JS_PORTFOLIO_URL=https://your-username.github.io/sanju-portfolio`
+
+**Local Development:**
+Defaults to `http://localhost:5173` if not set.
+
+For other production settings, you may want to add:
 ```python
 import os
 
