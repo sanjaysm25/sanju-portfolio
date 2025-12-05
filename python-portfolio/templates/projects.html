@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - {{ data.name }}{% endblock %}
+
+{% block content %}
+<section id="projects" class="projects-section">
+    <div class="container">
+        <div class="projects-header">
+            <h2 class="projects-title">Featured Projects</h2>
+        </div>
+
+        <div class="projects-grid">
+            {% for project in data.projects %}
+            <div class="project-card">
+                <h3 class="project-title">{{ project.short_title if project.short_title else project.title }}</h3>
+                <p class="project-description">{{ project.description }}</p>
+                <div class="project-tech">
+                    {% for tech in project.technologies %}
+                    <span class="tech-badge">{{ tech }}</span>
+                    {% endfor %}
+                </div>
+                {% if project.period %}
+                <p class="project-period">{{ project.period }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+

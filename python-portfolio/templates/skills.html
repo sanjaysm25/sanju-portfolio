@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Skills - {{ data.name }}{% endblock %}
+
+{% block content %}
+<section id="skills" class="skills-section">
+    <div class="container">
+        <div class="skills-header">
+            <h2 class="skills-title">
+                Transforming ideas into exceptional digital experiences through expertise and innovation
+                <span class="skills-underline"></span>
+            </h2>
+        </div>
+
+        <div class="skills-categories">
+            <div class="skill-category-card">
+                <div class="category-number">01</div>
+                <div class="category-icon-wrapper">
+                    <svg class="category-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="16 18 22 12 16 6"></polyline>
+                        <polyline points="8 6 2 12 8 18"></polyline>
+                    </svg>
+                </div>
+                <h3 class="category-title">Full Stack Development</h3>
+                <p class="category-description">Building scalable and high-performance web applications using React, Node.js, and Python, with robust backend architectures, secure RESTful APIs, and clean code practices.</p>
+                <div class="category-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">React</span>
+                    <span class="tech-badge">Node.js</span>
+                </div>
+            </div>
+
+            <div class="skill-category-card">
+                <div class="category-number">02</div>
+                <div class="category-icon-wrapper">
+                    <svg class="category-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                    </svg>
+                </div>
+                <h3 class="category-title">AI/ML Engineering</h3>
+                <p class="category-description">Developing intelligent systems with TensorFlow, PyTorch, and advanced machine learning algorithms. Creating AI-driven products with neural networks and deep learning.</p>
+                <div class="category-tech">
+                    <span class="tech-badge">TensorFlow</span>
+                    <span class="tech-badge">PyTorch</span>
+                    <span class="tech-badge">Machine Learning</span>
+                    <span class="tech-badge">Deep Learning</span>
+                </div>
+            </div>
+
+            <div class="skill-category-card">
+                <div class="category-number">03</div>
+                <div class="category-icon-wrapper">
+                    <svg class="category-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                        <path d="M21 5v14c0 1.66-4 3-9 3s-9-1.34-9-3V5"></path>
+                    </svg>
+                </div>
+                <h3 class="category-title">Database Systems</h3>
+                <p class="category-description">Designing and managing database architectures with MySQL and MongoDB. Ensuring data integrity, performance optimization, and scalable database solutions.</p>
+                <div class="category-tech">
+                    <span class="tech-badge">MySQL</span>
+                    <span class="tech-badge">MongoDB</span>
+                    <span class="tech-badge">SQL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

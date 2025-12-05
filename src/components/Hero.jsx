@@ -25,6 +25,7 @@ const Hero = () => {
         />
       </motion.div>
 
+
       {/* Animated Blob Background */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div

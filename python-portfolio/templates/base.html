@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ data.name }} - Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-left">
+                <div class="portfolio-switcher portfolio-switcher-hint">
+                    <div class="portfolio-tooltip">Click to switch portfolio</div>
+                    <button class="portfolio-switcher-btn" id="portfolioSwitcherBtn" title="Click to switch between portfolios">
+                        <svg class="portfolio-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M9.585 11.692h4.328s2.432.025 2.432-2.451c0-2.476-2.582-2.476-2.582-2.476h-1.29s-1.032-.007-1.032 1.168v1.168h-2.155v-2.335s-.007-2.433 2.47-2.433h4.67s2.393-.006 2.393 2.458v4.626s.006 2.451-2.45 2.451h-6.283v-2.084zm9.54-8.276H5.11s-3.774 0-3.774 3.783v10.79s0 3.774 3.774 3.774h13.947s3.774 0 3.774-3.774V7.199s.059-3.783-3.774-3.783zm-.994 13.19H5.596s-.624 0-.624-.623V7.548s0-.623.624-.623h12.435s.624 0 .624.623v8.435s0 .623-.624.623z"/>
+                        </svg>
+                        <span class="portfolio-text">Python</span>
+                        <svg class="portfolio-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <div class="portfolio-dropdown" id="portfolioDropdown">
+                        <a href="http://localhost:5173" class="portfolio-option" target="_self">
+                            <svg class="portfolio-option-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M3 3h18v18H3V3zm16.48 13.19l-1.68 1.68c-.37.37-.88.58-1.41.58h-7.58c-.53 0-1.04-.21-1.41-.58l-1.68-1.68c-.37-.37-.58-.88-.58-1.41V9.22c0-.53.21-1.04.58-1.41l1.68-1.68c.37-.37.88-.58 1.41-.58h7.58c.53 0 1.04.21 1.41.58l1.68 1.68c.37.37.58.88.58 1.41v5.56c0 .53-.21 1.04-.58 1.41zM12 8.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5S13.93 8.5 12 8.5zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 11 12 11s1.5.67 1.5 1.5S12.83 13.5 12 13.5z"/>
+                            </svg>
+                            <span>JavaScript</span>
+                        </a>
+                        <a href="#" class="portfolio-option">
+                            <svg class="portfolio-option-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 18l-8-8h16l-8 8zm0-16L4 6h16L12 2zm0 8l-8 8h16l-8-8z"/>
+                            </svg>
+                            <span>HTML/CSS</span>
+                        </a>
+                        <a href="#" class="portfolio-option">
+                            <svg class="portfolio-option-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8.851 18.56s-.794.05.57.95c1.365.9 3.003.675 3.003.675s.15.9.6 1.8c.45.9.9 1.35 1.8 1.5.9.15 1.65.225 1.65.225s3.003.075 4.648-1.05c1.646-1.125 1.35-1.8 1.35-1.8l-1.125-1.8s-.6.3-1.5.225c-.9-.075-1.8-.15-1.8-.15l-.45-1.35s.6-.15 1.5-.45c.9-.3 1.5-.9 1.5-1.8 0-.9-.6-1.5-1.5-1.8-.9-.3-1.5-.45-1.5-.45l.45-1.35s.9.075 1.8.15c.9.075 1.5.225 1.5.225l1.125-1.8s.3-.675-1.35-1.8c-1.65-1.125-4.648-1.05-4.648-1.05s-.75-.075-1.65-.225c-.9-.15-1.35-.6-1.8-1.5-.45-.9-.6-1.8-.6-1.8s-1.638-.225-3.003.675c-1.365.9-.57.95-.57.95l1.125 1.8s-.3.075-.6.225c-.3.15-.6.3-.6.6 0 .3.15.6.3.75.15.15.3.3.3.3l-1.125 1.8zm.6-3.6s-1.5-.45-1.5-1.8c0-1.35 1.5-1.8 1.5-1.8s1.5.45 1.5 1.8c0 1.35-1.5 1.8-1.5 1.8zm6.3 0s-1.5-.45-1.5-1.8c0-1.35 1.5-1.8 1.5-1.8s1.5.45 1.5 1.8c0 1.35-1.5 1.8-1.5 1.8z"/>
+                            </svg>
+                            <span>Java</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="navbar-right">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Portfolio Intro Modal -->
+    <div id="portfolioIntroModal" class="portfolio-intro-modal" style="display: none;">
+        <div class="portfolio-intro-backdrop"></div>
+        <div class="portfolio-intro-content">
+            <div class="portfolio-intro-header">
+                <h2>Welcome! 👋</h2>
+                <p>Discover a new feature</p>
+                <button class="portfolio-intro-close" id="portfolioIntroClose">×</button>
+            </div>
+            <div class="portfolio-intro-body">
+                <div class="portfolio-intro-feature">
+                    <div class="portfolio-intro-icon">🖱️</div>
+                    <div>
+                        <h3>Portfolio Switcher</h3>
+                        <p>Click the button in the top-left corner to switch between different portfolio versions!</p>
+                    </div>
+                </div>
+                <div class="portfolio-intro-steps">
+                    <div class="portfolio-intro-step">
+                        <span class="step-number">1</span>
+                        <p>Look for the <strong>"Python"</strong> button in the navbar (top-left)</p>
+                    </div>
+                    <div class="portfolio-intro-step">
+                        <span class="step-number">2</span>
+                        <p>Click it to see available portfolios: <strong>Python</strong>, <strong>JavaScript</strong>, <strong>HTML/CSS</strong>, <strong>Java</strong></p>
+                    </div>
+                    <div class="portfolio-intro-step">
+                        <span class="step-number">3</span>
+                        <p>Select any portfolio to explore different implementations!</p>
+                    </div>
+                </div>
+                <div class="portfolio-intro-hint">
+                    <span>⬇️</span>
+                    <p>The switcher has a subtle animation to catch your attention!</p>
+                </div>
+                <button class="portfolio-intro-btn" id="portfolioIntroBtn">Got it! Let's explore</button>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 {{ data.name }}. All rights reserved.</p>
+            <div class="social-links">
+                <a href="{{ data.github }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="{{ data.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Portfolio Intro Modal
+        const portfolioIntroModal = document.getElementById('portfolioIntroModal');
+        const portfolioIntroClose = document.getElementById('portfolioIntroClose');
+        const portfolioIntroBtn = document.getElementById('portfolioIntroBtn');
+        const portfolioIntroBackdrop = document.querySelector('.portfolio-intro-backdrop');
+        
+        function showPortfolioIntro() {
+            const hasSeenIntro = localStorage.getItem('portfolio-intro-seen');
+            if (!hasSeenIntro) {
+                setTimeout(() => {
+                    if (portfolioIntroModal) {
+                        portfolioIntroModal.style.display = 'block';
+                        setTimeout(() => {
+                            portfolioIntroModal.classList.add('active');
+                        }, 10);
+                    }
+                }, 1000);
+            }
+        }
+        
+        function hidePortfolioIntro() {
+            if (portfolioIntroModal) {
+                portfolioIntroModal.classList.remove('active');
+                setTimeout(() => {
+                    portfolioIntroModal.style.display = 'none';
+                }, 300);
+            }
+            localStorage.setItem('portfolio-intro-seen', 'true');
+        }
+        
+        if (portfolioIntroClose) {
+            portfolioIntroClose.addEventListener('click', hidePortfolioIntro);
+        }
+        
+        if (portfolioIntroBtn) {
+            portfolioIntroBtn.addEventListener('click', hidePortfolioIntro);
+        }
+        
+        if (portfolioIntroBackdrop) {
+            portfolioIntroBackdrop.addEventListener('click', hidePortfolioIntro);
+        }
+        
+        // Show intro on page load
+        showPortfolioIntro();
+
+        // Portfolio Switcher
+        const portfolioSwitcher = document.querySelector('.portfolio-switcher');
+        const portfolioSwitcherBtn = document.getElementById('portfolioSwitcherBtn');
+        const portfolioDropdown = document.getElementById('portfolioDropdown');
+        
+        if (portfolioSwitcherBtn) {
+            portfolioSwitcherBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                portfolioSwitcher.classList.toggle('active');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!portfolioSwitcher.contains(e.target)) {
+                    portfolioSwitcher.classList.remove('active');
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    
+                    // Animate child elements with stagger
+                    const children = entry.target.querySelectorAll('.skill-category, .experience-item, .project-card, .education-card');
+                    children.forEach((child, index) => {
+                        setTimeout(() => {
+                            child.style.opacity = '1';
+                            child.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize child elements with better transitions
+        document.querySelectorAll('.skill-category, .project-card, .education-card, .contact-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+        });
+
+        // Add smooth transitions for all interactive elements
+        document.querySelectorAll('a, button, .skill-category, .project-card, .education-card, .contact-item').forEach(el => {
+            el.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+            });
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.05)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
+

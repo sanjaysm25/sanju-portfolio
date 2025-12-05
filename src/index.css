@@ -27,6 +27,19 @@
     @apply bg-white/5 backdrop-blur-xl border border-white/10;
   }
   
+  .animate-pulse-subtle {
+    animation: pulse-subtle 3s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-subtle {
+    0%, 100% {
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.15);
+    }
+    50% {
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.25);
+    }
+  }
+  
   .glass-strong {
     @apply bg-white/10 backdrop-blur-xl border border-white/20;
   }

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Experience - {{ data.name }}{% endblock %}
+
+{% block content %}
+<section id="experience" class="experience-page">
+    <div class="container experience-container">
+        <!-- Decorative Timeline Lines -->
+        <div class="timeline-line-left"></div>
+        <div class="timeline-line-right">
+            <div class="timeline-dot"></div>
+        </div>
+
+        <div class="experience-list">
+            {% for exp in data.experience %}
+            <div class="experience-item">
+                <div class="experience-content">
+                    <h2 class="experience-company">{{ exp.company }}</h2>
+                    <p class="experience-position">{{ exp.position }}</p>
+                    {% if exp.location %}
+                    <p class="experience-location">{{ exp.location }}</p>
+                    {% endif %}
+                    <p class="experience-description">{{ exp.description }}</p>
+                    <p class="experience-period">{{ exp.period }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+

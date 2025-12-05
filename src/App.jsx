@@ -7,10 +7,12 @@ import Projects from './components/Projects'
 import Education from './components/Education'
 import Contact from './components/Contact'
 import NameSection from './components/NameSection'
+import PortfolioIntro from './components/PortfolioIntro'
 
 function App() {
   return (
     <div className="min-h-screen bg-gray-100 relative">
+      <PortfolioIntro />
       <Navbar />
       <Hero />
       <About />

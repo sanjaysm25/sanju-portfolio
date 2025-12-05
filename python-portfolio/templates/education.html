@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Education - {{ data.name }}{% endblock %}
+
+{% block content %}
+<section id="education" class="education-section">
+    <div class="container">
+        <div class="education-header">
+            <h2 class="education-title">Education</h2>
+        </div>
+
+        <div class="education-list">
+            {% for edu in data.education %}
+            <div class="education-card">
+                <div class="education-icon-wrapper">
+                    <svg class="education-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+                        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+                    </svg>
+                </div>
+                <div class="education-content">
+                    <h3 class="education-degree">{{ edu.degree }}</h3>
+                    <p class="education-institution">{{ edu.institution }}</p>
+                    <p class="education-location">{{ edu.location }}</p>
+                    <div class="education-meta">
+                        <span class="education-period">{{ edu.period }}</span>
+                        <span class="education-grade">{{ edu.grade }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
