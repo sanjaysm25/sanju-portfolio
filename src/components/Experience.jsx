@@ -9,106 +9,78 @@ const Experience = () => {
 
   const experiences = [
     {
-      title: 'Software Engineer',
+      title: 'AI Engineer',
       company: 'UPRIO',
-      location: 'Bengaluru, India • Onsite',
+      location: 'Bengaluru, India',
       period: 'Jul 2025 - Present',
-      description: 'Contributing as junior AI engineer, engaged in initiatives related to artificial intelligence. Developed and implemented new software applications, enhancing company productivity and client satisfaction.',
+      description: 'Contribute as a junior AI engineer engaged in AI initiatives, driving product innovation. Developed and implemented software applications, enhancing company productivity and client satisfaction.',
+      current: true,
     },
     {
-      title: 'Software Developer Level 1',
+      title: 'AI Developer Level 1',
       company: 'AT&T',
-      location: 'Bengaluru, India • Onsite',
+      location: 'Bengaluru, India',
       period: 'Jun 2024 - Jun 2025',
-      description: 'Joined the development team and actively contributed to building and improving applications. Worked on key projects while continuously gaining technical knowledge and hands-on experience.',
+      description: 'Actively contributed to building and improving enterprise-grade applications. Collaborated on key projects while continuously expanding technical knowledge and hands-on engineering experience.',
     },
     {
-      title: 'Trainee',
+      title: 'Trainee – Development Team',
       company: 'Otomeyt | An Apar Entity',
-      location: 'Bengaluru, India • Onsite',
+      location: 'Singapore-based AI company',
       period: 'Sep 2023',
-      description: 'Joined Otomeyt, an AI-based company, as a Trainee within the Development Team. Actively participated in company projects, including hands-on assignments. Gained exposure to various programming languages and acquired valuable corporate world experience.',
+      description: 'Contributed to active development projects at a Singapore-based AI company. Gained cross-functional exposure to multiple programming languages and corporate engineering practices.',
     },
   ]
 
   return (
-    <section id="experience" ref={ref} className="section-padding-compact relative min-h-screen flex items-center bg-gray-100">
-      <div className="max-w-7xl mx-auto w-full px-8 relative">
-        {/* Curved Line on Left */}
+    <section id="experience" ref={ref} className="section-padding section-surface">
+      <div className="max-w-7xl mx-auto w-full">
         <motion.div
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={inView ? { pathLength: 1, opacity: 1 } : {}}
-          transition={{ duration: 1.5, delay: 0.3 }}
-          className="absolute left-0 top-0 bottom-0 w-0.5 bg-lime-500 hidden md:block"
-          style={{
-            clipPath: 'polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%)',
-          }}
-        />
-
-        {/* Vertical Timeline Line */}
-        <motion.div
-          initial={{ scaleY: 0 }}
-          animate={inView ? { scaleY: 1 } : {}}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="absolute right-1/3 top-0 bottom-0 w-0.5 bg-lime-500 hidden md:block"
-          style={{ transformOrigin: 'top' }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-14"
         >
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={inView ? { scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1 }}
-            className="absolute top-1/3 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-black border-2 border-lime-500"
-          />
+          <span className="section-label">Experience</span>
+          <h2 className="section-heading">Where I've worked</h2>
+          <p className="section-subheading">Growing from trainee to AI engineer across product and enterprise teams.</p>
         </motion.div>
 
-        <div className="space-y-32">
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -100 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
-              className="relative"
-            >
-              <div className="max-w-2xl">
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.4 + index * 0.2 }}
-                  className="text-5xl md:text-6xl font-bold text-gray-900 mb-2"
-                >
-                  {exp.company}
-                </motion.h2>
-                
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.5 + index * 0.2 }}
-                  className="text-xl text-gray-600 mb-6"
-                >
-                  {exp.title}
-                </motion.p>
+        <div className="relative">
+          <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-lime-400 via-gray-200 to-transparent hidden sm:block" />
 
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
-                  className="text-gray-700 leading-relaxed mb-4"
-                >
-                  {exp.description}
-                </motion.p>
+          <div className="space-y-8">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.2 + index * 0.12 }}
+                className="relative sm:pl-16 md:pl-20"
+              >
+                <div className="absolute left-2.5 md:left-6 top-8 w-3 h-3 rounded-full bg-lime-400 border-4 border-white shadow hidden sm:block" />
 
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.7 + index * 0.2 }}
-                  className="text-gray-500 text-sm"
-                >
-                  {exp.period}
-                </motion.p>
-              </div>
-            </motion.div>
-          ))}
+                <div className="accent-card p-6 md:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4">
+                    <div>
+                      <div className="flex items-center gap-3 mb-1">
+                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">{exp.company}</h3>
+                        {exp.current && (
+                          <span className="px-2.5 py-0.5 text-xs font-semibold rounded-full bg-lime-100 text-lime-700 border border-lime-200">
+                            Current
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-lime-600 font-semibold">{exp.title}</p>
+                      <p className="text-gray-500 text-sm mt-1">{exp.location}</p>
+                    </div>
+                    <span className="text-sm text-gray-500 font-medium whitespace-nowrap">{exp.period}</span>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">{exp.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

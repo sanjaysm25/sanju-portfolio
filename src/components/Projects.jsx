@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FaBrain, FaCode } from 'react-icons/fa'
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -10,76 +10,122 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Harnessing AI for Precise Estimation of Medical Leaf Characteristics',
+      title: 'AI Document Search — Retrieval-Augmented Generation (RAG) Chatbot',
+      shortTitle: 'AI Document Search',
+      description: 'Architected an intelligent document search system enabling users to converse with PDF documents using LLMs and semantic search. Leveraged Google Gemini API with RAG pipelines for context-aware responses. Deployed on Vercel and Docker.',
+      technologies: ['React', 'FastAPI', 'Python', 'Google Gemini', 'LangChain', 'Pinecone / FAISS'],
+      featured: true,
+      github: 'https://github.com/sanjaysm25/AI-Document-Search-RAG-Chatbot-',
+    },
+    {
+      title: 'Suicide Rate Prediction using Machine Learning',
+      shortTitle: 'Suicide Rate Prediction',
+      description: 'ML-based predictive system with ethical AI practices. Integrated demographic, socioeconomic, and mental health datasets to identify at-risk patterns and support early intervention.',
+      technologies: ['Python', 'Scikit-learn', 'Machine Learning'],
+      github: 'https://github.com/sanjaysm25/Suicide-Rate-Prediction-with-Machine-Learning-',
+    },
+    {
+      title: 'AI-Driven Estimation of Medical Leaf Characteristics',
       shortTitle: 'Medical Leaf AI',
-      description: 'Utilizing advanced AI techniques like VGG16 and Random Forest to precisely identify and analyze medical leaf characteristics, merging botany, healthcare, and AI. Seamlessly integrates geolocation data and disease detection for informed decision-making in both agricultural and medical contexts.',
+      description: 'Advanced AI to identify medicinal leaf characteristics with geolocation data and disease detection for agricultural and medical decision-making.',
       technologies: ['Python', 'TensorFlow', 'OpenCV', 'VGG16', 'Random Forest'],
       period: 'Sep 2023 - Jan 2024',
+      github: 'https://github.com/sanjaysm25/HARNESSING-AI-FOR-PRECISE-ESTIMATION-OF-MEDICINAL-LEAF-CHARACTERISTICS',
     },
     {
-      title: 'Driver Drowsiness Detection',
-      description: 'A computer vision-based system that detects faces, eyes, nose, and mouth in real-time images. By analyzing the eye regions and applying fuzzy logic, the system determines if the driver is drowsy. If drowsiness is detected, appropriate warnings and alerts are triggered to ensure driver safety.',
-      technologies: ['MATLAB'],
-      period: 'Jan 2023 - June 2023',
+      title: 'Driver Drowsiness Detection System',
+      shortTitle: 'Driver Drowsiness Detection',
+      description: 'Real-time computer vision system detecting facial landmarks and applying fuzzy logic to trigger safety warnings for drowsy drivers.',
+      technologies: ['MATLAB', 'Computer Vision', 'Fuzzy Logic'],
+      period: 'Jun 2023',
+      github: 'https://github.com/sanjaysm25/Sanjay-SM-Driver-Drowisness-Detection-',
     },
     {
-      title: 'BookMyPool Application',
-      description: 'An Android application that helps people share rides and reduce their carbon footprint by connecting users who are traveling in the same direction.',
-      technologies: ['Android Studio', 'Java'],
-      period: 'Jan 2023 - June 2023',
-    },
-    {
-      title: 'Exam Nerd - Online Exam System',
-      description: 'A comprehensive online examination system allowing teachers to create quizzes and students to attend them. Features a ranking system that arranges students based on their performance. Very useful for both students and teachers.',
-      technologies: ['PHP', 'MySQL', 'HTML', 'CSS'],
+      title: 'Exam Nerd — Online Examination Platform',
+      shortTitle: 'Exam Nerd',
+      description: 'Online examination system with auto-evaluation and student ranking for educators and students.',
+      technologies: ['MySQL', 'PHP', 'HTML', 'CSS'],
       period: 'Sep 2023',
+      github: 'https://github.com/sanjaysm25/EXAM-NERD',
+    },
+    {
+      title: 'BookMyPool — Ride-Sharing Android Application',
+      shortTitle: 'BookMyPool',
+      description: 'Android ride-sharing app matching commuters in the same direction to reduce carbon footprint.',
+      technologies: ['Android Studio', 'Java'],
+      period: 'Jan - Jun 2023',
+      github: 'https://github.com/sanjaysm25/BooKMyPool',
     },
   ]
 
   return (
-    <section id="projects" ref={ref} className="section-padding-compact relative min-h-screen flex items-center bg-gray-100">
-      <div className="max-w-7xl mx-auto w-full px-8">
+    <section id="projects" ref={ref} className="section-padding section-muted">
+      <div className="max-w-7xl mx-auto w-full">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-14"
         >
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-          >
-            Featured Projects
-          </motion.h2>
+          <span className="section-label">Projects</span>
+          <h2 className="section-heading">Key projects</h2>
+          <p className="section-subheading">From RAG chatbots and ML models to full-stack platforms and mobile apps.</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="bg-gray-50 border border-gray-200 p-6 rounded-xl hover:border-lime-400 transition-all group"
+              transition={{ duration: 0.6, delay: 0.15 + index * 0.08 }}
+              whileHover={{ y: -4 }}
+              className={`accent-card p-6 md:p-7 group ${project.featured ? 'md:col-span-2 md:p-8 bg-gradient-to-br from-white to-lime-50/50 dark:from-gray-900 dark:to-lime-500/5' : ''}`}
             >
-              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-lime-600 transition-colors">
-                {project.shortTitle || project.title}
-              </h3>
-              <p className="text-gray-600 text-sm mb-4 leading-relaxed">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.technologies.map((tech, techIndex) => (
-                  <span
-                    key={techIndex}
-                    className="px-3 py-1 bg-white border border-gray-200 rounded text-xs text-gray-700"
-                  >
-                    {tech}
+              <div className="flex items-start justify-between gap-4 mb-3">
+                <h3 className={`font-bold text-gray-900 dark:text-white group-hover:text-lime-700 dark:group-hover:text-lime-400 transition-colors ${project.featured ? 'text-2xl' : 'text-xl'}`}>
+                  {project.shortTitle || project.title}
+                </h3>
+                {project.featured && (
+                  <span className="flex-shrink-0 px-3 py-1 text-xs font-semibold rounded-full bg-lime-400 text-gray-900">
+                    Featured
                   </span>
+                )}
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mb-5">
+                {project.technologies.map((tech, techIndex) => (
+                  <span key={techIndex} className="pill-tag">{tech}</span>
                 ))}
               </div>
-              <p className="text-gray-500 text-xs">{project.period}</p>
+
+              <div className="flex flex-wrap items-center gap-3">
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+                  >
+                    <FaGithub size={14} />
+                    View Code
+                  </a>
+                )}
+                {project.demo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-lime-600 dark:hover:text-lime-400 transition-colors"
+                  >
+                    <FaExternalLinkAlt size={12} />
+                    Live Demo
+                  </a>
+                )}
+                {project.period && (
+                  <span className="text-gray-400 text-xs ml-auto">{project.period}</span>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>

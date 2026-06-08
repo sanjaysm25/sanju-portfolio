@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane } from 'react-icons/fa'
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa'
+
+const CONTACT_EMAIL = 'itssanjaysm@gmail.com'
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -16,13 +18,14 @@ const Contact = () => {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState(null) // 'success' | 'error' | null
 
   const contactInfo = [
     {
       icon: FaEnvelope,
       label: 'Email',
-      value: 'itssanjaysm@gmail.com',
-      link: 'mailto:itssanjaysm@gmail.com',
+      value: CONTACT_EMAIL,
+      link: `mailto:${CONTACT_EMAIL}`,
     },
     {
       icon: FaPhone,
@@ -32,8 +35,8 @@ const Contact = () => {
     },
     {
       icon: FaMapMarkerAlt,
-      label: 'Address',
-      value: '#3B/2, 1st Main, Kengeri Satellite Town, Bengaluru, Karnataka, India, 560060',
+      label: 'Location',
+      value: 'Bengaluru, Karnataka, India',
       link: null,
     },
   ]
@@ -54,138 +57,156 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false)
+    setStatus(null)
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `Portfolio message from ${formData.name}`,
+          _template: 'table',
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Failed to send message')
+      }
+
+      setStatus('success')
       setFormData({ name: '', email: '', message: '' })
-      alert('Message sent successfully!')
-    }, 1000)
+    } catch {
+      setStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
-    <section id="contact" ref={ref} className="section-padding-compact relative min-h-screen flex items-center bg-gray-100">
-      <div className="max-w-7xl mx-auto w-full px-8">
+    <section id="contact" ref={ref} className="section-padding section-surface">
+      <div className="max-w-7xl mx-auto w-full">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="mb-14 text-center"
         >
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
-          >
-            Let's Connect
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-gray-600 text-lg"
-          >
-            Get in touch for collaborations and opportunities
-          </motion.p>
+          <span className="section-label">Contact</span>
+          <h2 className="section-heading">Let's connect</h2>
+          <p className="section-subheading mx-auto">
+            Open to full-stack and AI engineering roles, collaborations, and interesting projects.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
+        <div className="grid lg:grid-cols-2 gap-10">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            {contactInfo.map((info, index) => (
-              <motion.a
-                key={index}
-                href={info.link || '#'}
-                initial={{ opacity: 0, y: 20 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                whileHover={{ x: 10 }}
-                className="flex items-center gap-4 p-4 bg-gray-50 border border-gray-200 rounded-xl hover:border-lime-400 transition-all group"
-              >
-                <div className="p-3 bg-lime-400 rounded-lg group-hover:scale-110 transition-transform">
-                  <info.icon className="text-gray-900 text-xl" />
-                </div>
-                <div>
-                  <p className="text-gray-500 text-sm">{info.label}</p>
-                  <p className="text-gray-900 font-semibold">{info.value}</p>
-                </div>
-              </motion.a>
-            ))}
+            {contactInfo.map((info, index) => {
+              const Wrapper = info.link ? 'a' : 'div'
+              return (
+                <Wrapper
+                  key={index}
+                  href={info.link || undefined}
+                  className="accent-card p-5 flex items-center gap-4 group block"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-lime-400/20 border border-lime-400/30 flex items-center justify-center group-hover:bg-lime-400/30 transition-colors">
+                    <info.icon className="text-lime-700" />
+                  </div>
+                  <div>
+                    <p className="text-gray-500 text-xs uppercase tracking-wider">{info.label}</p>
+                    <p className="text-gray-900 dark:text-white font-semibold">{info.value}</p>
+                  </div>
+                </Wrapper>
+              )
+            })}
 
-            <div className="flex gap-4 mt-8">
+            <div className="flex gap-3 pt-2">
               {socialLinks.map((social, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={inView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                  whileHover={{ scale: 1.1, y: -5 }}
-                  whileTap={{ scale: 0.9 }}
-                  className="w-12 h-12 rounded-full bg-gray-50 border border-gray-200 hover:bg-lime-400 hover:border-lime-400 text-gray-700 hover:text-gray-900 flex items-center justify-center transition-all"
+                  className="w-11 h-11 rounded-full accent-card flex items-center justify-center text-gray-600 hover:text-gray-900 hover:border-lime-400 transition-all"
                   aria-label={social.label}
                 >
                   <social.icon />
-                </motion.a>
+                </a>
               ))}
             </div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.form
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
             onSubmit={handleSubmit}
-            className="space-y-6"
+            className="accent-card p-6 md:p-8 space-y-5"
           >
-            <div>
-              <input
-                type="text"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-lime-400 transition-all"
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-lime-400 transition-all"
-              />
-            </div>
-            <div>
-              <textarea
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                required
-                rows={6}
-                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-lime-400 transition-all resize-none"
-              />
-            </div>
-            <motion.button
+            {status === 'success' && (
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-lime-50 border border-lime-200 text-lime-800 text-sm">
+                <FaCheckCircle className="flex-shrink-0 mt-0.5" />
+                <p>Message sent! I'll get back to you at the email you provided.</p>
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="flex items-start gap-3 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm">
+                <FaExclamationCircle className="flex-shrink-0 mt-0.5" />
+                <p>
+                  Something went wrong. Please email me directly at{' '}
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="underline font-medium">
+                    {CONTACT_EMAIL}
+                  </a>
+                </p>
+              </div>
+            )}
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              required
+              className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-lime-400 focus:ring-2 focus:ring-lime-400/20 transition-all"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              required
+              className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-lime-400 focus:ring-2 focus:ring-lime-400/20 transition-all"
+            />
+            <textarea
+              name="message"
+              placeholder="Your Message"
+              value={formData.message}
+              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              required
+              rows={5}
+              className="w-full px-4 py-3 bg-slate-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:border-lime-400 focus:ring-2 focus:ring-lime-400/20 transition-all resize-none"
+            />
+            <button
               type="submit"
               disabled={isSubmitting}
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full px-8 py-4 bg-lime-400 hover:bg-lime-500 text-gray-900 font-bold rounded-lg transition-all duration-300 shadow-lg shadow-lime-400/30 flex items-center justify-center gap-2"
+              className="btn-primary w-full disabled:opacity-60"
             >
               {isSubmitting ? 'Sending...' : 'Send Message'}
-              <FaPaperPlane />
-            </motion.button>
+              <FaPaperPlane size={14} />
+            </button>
           </motion.form>
         </div>
       </div>

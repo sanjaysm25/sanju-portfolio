@@ -1,30 +1,43 @@
+import { lazy, Suspense } from 'react'
+import { useTheme } from './context/ThemeContext'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
-import Skills from './components/Skills'
-import Experience from './components/Experience'
-import Projects from './components/Projects'
-import Education from './components/Education'
-import Contact from './components/Contact'
-import NameSection from './components/NameSection'
-import PortfolioIntro from './components/PortfolioIntro'
+import ScrollToTop from './components/ScrollToTop'
+import Analytics from './components/Analytics'
+import Footer from './components/Footer'
+
+const About = lazy(() => import('./components/About'))
+const Skills = lazy(() => import('./components/Skills'))
+const Experience = lazy(() => import('./components/Experience'))
+const Projects = lazy(() => import('./components/Projects'))
+const Education = lazy(() => import('./components/Education'))
+const Certifications = lazy(() => import('./components/Certifications'))
+const Contact = lazy(() => import('./components/Contact'))
+const CtaSection = lazy(() => import('./components/CtaSection'))
 
 function App() {
+  const { isDark } = useTheme()
+
   return (
-    <div className="min-h-screen bg-gray-100 relative">
-      <PortfolioIntro />
+    <div className={`${isDark ? 'dark' : ''} min-h-screen bg-slate-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 relative transition-colors duration-300`}>
+      <a href="#home" className="skip-link">Skip to content</a>
+      <Analytics />
       <Navbar />
       <Hero />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Education />
-      <Contact />
-      <NameSection />
+      <Suspense fallback={null}>
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Education />
+        <Certifications />
+        <Contact />
+        <CtaSection />
+      </Suspense>
+      <Footer />
+      <ScrollToTop />
     </div>
   )
 }
 
 export default App
-

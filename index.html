@@ -4,23 +4,46 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/sanju-portfolio/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sanjay S M - AI & Machine Learning Engineer Portfolio" />
-    <title>Sanjay S M | AI & ML Engineer</title>
+    <meta name="description" content="Sanjay S M — Full-stack Developer & AI & ML Engineer based in Bengaluru. Building RAG systems, ML models, and scalable web applications." />
+    <meta name="author" content="Sanjay S M" />
+    <meta name="keywords" content="Sanjay S M, Full-stack Developer, AI Engineer, Machine Learning, React, Python, Portfolio" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sanjay S M | Full-stack Developer & AI Engineer" />
+    <meta property="og:description" content="Full-stack Developer & AI & ML Engineer building intelligent systems and scalable applications in Bengaluru." />
+    <meta property="og:url" content="https://sanjaysm25.github.io/sanju-portfolio/" />
+    <meta property="og:image" content="https://sanjaysm25.github.io/sanju-portfolio/logo.png" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Sanjay S M | Full-stack Developer & AI Engineer" />
+    <meta name="twitter:description" content="Full-stack Developer & AI & ML Engineer building intelligent systems and scalable applications." />
+    <meta name="twitter:image" content="https://sanjaysm25.github.io/sanju-portfolio/logo.png" />
+
+    <title>Sanjay S M | Full-stack Developer & AI Engineer</title>
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem('portfolio-theme');
+          if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.style.colorScheme = 'dark';
+          } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.style.colorScheme = 'light';
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body style="margin: 0; padding: 0; background-color: #111827; color: white;">
+  <body>
     <noscript>
-      <div style="padding: 50px; text-align: center; color: white;">
+      <div style="padding: 50px; text-align: center;">
         <h1>JavaScript is required to run this application.</h1>
         <p>Please enable JavaScript in your browser settings.</p>
       </div>
     </noscript>
-    <div id="root">
-      <div style="padding: 50px; text-align: center; color: white;">
-        <h1>Loading Portfolio...</h1>
-        <p>If this message persists, please check the browser console for errors.</p>
-      </div>
-    </div>
+    <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-

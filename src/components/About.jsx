@@ -7,69 +7,78 @@ const About = () => {
     threshold: 0.1,
   })
 
+  const interests = [
+    'Personal coding & open-source',
+    'Gaming',
+    'Manga & anime',
+    'Tech volunteering',
+  ]
+
+  const stats = [
+    { label: 'Years of Experience', value: '2+' },
+    { label: 'Key Projects', value: '7+' },
+    { label: 'Companies', value: '3' },
+  ]
+
   return (
-    <section id="about" ref={ref} className="section-padding-compact relative min-h-screen flex items-center bg-gray-100">
-      <div className="max-w-7xl mx-auto w-full px-8">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Stats */}
+    <section id="about" ref={ref} className="section-padding section-surface">
+      <div className="max-w-7xl mx-auto w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-14"
+        >
+          <span className="section-label">About</span>
+          <h2 className="section-heading max-w-3xl">
+            Building intelligent systems and robust software solutions.
+          </h2>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-5 gap-12 items-start">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-3"
           >
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 leading-tight"
-            >
-              Driving measurable growth and engagement through thoughtful design and engineering.
-            </motion.h2>
-            
-            <div className="h-px w-full bg-gray-300 my-8"></div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <p className="text-gray-500 text-xs uppercase tracking-widest mb-2">YEARS OF EXPERIENCE</p>
-              <p className="text-6xl font-bold text-gray-900">1.5+</p>
-            </motion.div>
+            <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
+              Enthusiastic Artificial Intelligence & Machine Learning graduate with a strong foundation in data analysis, machine learning algorithms, and software development. Adept at building intelligent systems and robust software solutions that drive efficiency and innovation.
+            </p>
+            <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+              Seeking to contribute expertise in AI technologies and software engineering within a forward-thinking organisation to deliver impactful, real-world applications.
+            </p>
+
+            <div className="mt-8">
+              <p className="text-gray-500 text-xs uppercase tracking-widest mb-3">Interests</p>
+              <div className="flex flex-wrap gap-2">
+                {interests.map((interest, index) => (
+                  <span key={index} className="pill-tag">{interest}</span>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
-          {/* Right Column - Description */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
+            className="lg:col-span-2 space-y-4"
           >
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="text-gray-600 text-lg leading-relaxed mb-8"
-            >
-              Enthusiastic AI & Machine Learning graduate with a strong background in data analysis, machine learning algorithms, and software development. Skilled in building intelligent systems and developing software solutions that enhance efficiency and innovation. Eager to join a forward-thinking team where I can apply my expertise in AI technologies and software engineering to create impactful, real-world applications. Passionate about leveraging cutting-edge AI to solve complex problems and drive advancements in technology.
-            </motion.p>
-            
-            <div className="h-px w-full bg-gray-300 my-8 relative">
+            {stats.map((stat, index) => (
               <motion.div
-                initial={{ scale: 0 }}
-                animate={inView ? { scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="absolute left-1/4 w-3 h-3 rounded-full border-2 border-gray-900 bg-gray-100"
-              ></motion.div>
-            </div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <p className="text-gray-500 text-xs uppercase tracking-widest mb-2">PROJECTS COMPLETED</p>
-              <p className="text-6xl font-bold text-gray-900">25+</p>
-            </motion.div>
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                className="stat-card group"
+              >
+                <p className="text-gray-500 text-xs uppercase tracking-widest mb-1">{stat.label}</p>
+                <p className="text-4xl font-bold text-gray-900 dark:text-white group-hover:text-lime-600 dark:group-hover:text-lime-400 transition-colors">
+                  {stat.value}
+                </p>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </div>

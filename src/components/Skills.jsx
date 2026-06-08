@@ -1,19 +1,6 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import {
-  SiPython,
-  SiJavascript,
-  SiHtml5,
-  SiCss3,
-  SiMysql,
-  SiMongodb,
-  SiReact,
-  SiNodedotjs,
-  SiTensorflow,
-  SiPytorch,
-  SiVisualstudiocode,
-} from 'react-icons/si'
-import { FaBrain, FaCode, FaCalculator, FaDatabase } from 'react-icons/fa'
+import { FaBrain, FaCode, FaDatabase } from 'react-icons/fa'
 
 const Skills = () => {
   const [ref, inView] = useInView({
@@ -24,81 +11,67 @@ const Skills = () => {
   const skillCategories = [
     {
       number: '01',
-      title: 'Full Stack Development',
-      description: 'Building scalable and high-performance web applications using React, Node.js, and Python, with robust backend architectures, secure RESTful APIs, and clean code practices.',
+      title: 'Software Development',
+      description: 'Building applications with Python and JavaScript, web technologies, and foundational MERN stack development.',
       icon: FaCode,
-      technologies: ['Python', 'JavaScript', 'React', 'Node.js'],
+      technologies: ['Python', 'JavaScript', 'HTML', 'CSS', 'MERN Stack', 'VS Code', 'MATLAB'],
     },
     {
       number: '02',
-      title: 'AI/ML Engineering',
-      description: 'Developing intelligent systems with TensorFlow, PyTorch, and advanced machine learning algorithms. Creating AI-driven products with neural networks and deep learning.',
+      title: 'AI / Machine Learning',
+      description: 'Developing intelligent systems with ML, deep learning, neural networks, NLP, TensorFlow, and PyTorch.',
       icon: FaBrain,
-      technologies: ['TensorFlow', 'PyTorch', 'Machine Learning', 'Deep Learning'],
+      technologies: ['Machine Learning', 'Deep Learning', 'Neural Networks', 'TensorFlow', 'PyTorch', 'NLP'],
     },
     {
       number: '03',
-      title: 'Database Systems',
-      description: 'Designing and managing database architectures with MySQL and MongoDB. Ensuring data integrity, performance optimization, and scalable database solutions.',
+      title: 'Databases & Soft Skills',
+      description: 'Relational and NoSQL data solutions paired with teamwork, problem-solving, and analytical thinking.',
       icon: FaDatabase,
-      technologies: ['MySQL', 'MongoDB', 'SQL'],
+      technologies: ['SQL', 'MySQL', 'MongoDB', 'Problem-Solving', 'Analytical Thinking', 'Time Management'],
     },
   ]
 
   return (
-    <section id="skills" ref={ref} className="section-padding-compact relative min-h-screen flex items-center bg-gray-100">
-      <div className="max-w-7xl mx-auto w-full px-8">
+    <section id="skills" ref={ref} className="section-padding section-muted">
+      <div className="max-w-7xl mx-auto w-full">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-14"
         >
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 relative"
-          >
-            Transforming ideas into exceptional digital experiences through expertise and innovation
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={inView ? { scaleX: 1 } : {}}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="absolute top-1/2 left-0 w-full h-3 bg-lime-400 -z-10"
-              style={{ transform: 'skewY(-1deg)' }}
-            />
-          </motion.h2>
+          <span className="section-label">Skills</span>
+          <h2 className="section-heading">What I bring to the table</h2>
+          <p className="section-subheading">
+            Full-stack development meets AI engineering — from web apps to intelligent systems.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.15 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="bg-gray-50 border border-gray-200 p-8 rounded-xl hover:border-lime-400 transition-all relative group"
+              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              whileHover={{ y: -6 }}
+              className="accent-card p-8 relative group overflow-hidden"
             >
-              <div className="absolute top-4 right-4 text-6xl font-bold text-gray-200">{category.number}</div>
-              
+              <div className="absolute top-0 right-0 w-24 h-24 bg-lime-100 rounded-bl-[4rem] -mr-4 -mt-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute top-4 right-6 text-5xl font-bold text-gray-100 group-hover:text-lime-100 transition-colors">
+                {category.number}
+              </div>
+
               <div className="relative z-10">
-                <div className="w-16 h-16 rounded-full border-2 border-lime-400 bg-white flex items-center justify-center mb-6 group-hover:bg-lime-50 transition-colors">
-                  <category.icon className="text-gray-900 text-2xl" />
+                <div className="w-12 h-12 rounded-xl bg-lime-400/20 border border-lime-400/30 flex items-center justify-center mb-5">
+                  <category.icon className="text-lime-700 text-xl" />
                 </div>
-                
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">{category.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">{category.description}</p>
-                
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">{category.title}</h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-5">{category.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {category.technologies.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1 bg-white border border-gray-200 rounded text-xs text-gray-700"
-                    >
-                      {tech}
-                    </span>
+                    <span key={techIndex} className="pill-tag">{tech}</span>
                   ))}
                 </div>
               </div>
